@@ -12,7 +12,7 @@ title: dbyll
 defaults:
   -
     scope:
-      path: "" # empty string for all files
+      path: "/blog" # empty string for all files
     values:
       title: dbyll
 
