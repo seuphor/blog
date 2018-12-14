@@ -83,13 +83,11 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="" />
+  <meta name="keywords" content="aws," />
 
 
 
 
-
-  <link rel="alternate" href="/atom.xml" title="NexT" type="application/atom+xml" />
 
 
 
@@ -111,17 +109,19 @@
 
 
 
-<meta name="description" content="This is a link post. Clicking on the link should open Google in a new tab or window.">
-<meta name="keywords" content="Jekyll, NexT">
+<meta name="description" content="1. Setup EC2 Instance">
+<meta name="keywords" content="aws">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Link Post">
-<meta property="og:url" content="http://localhost:4000/foo/2013/12/24/link-post/">
-<meta property="og:site_name" content="NexT">
-<meta property="og:description" content="This is a link post. Clicking on the link should open Google in a new tab or window.">
+<meta property="og:title" content="AWS EC2 Python Environment Setup">
+<meta property="og:url" content="http://localhost:4000/tutorials/2018/12/13/aws-ec2-setup/">
+<meta property="og:site_name" content="Seuphor Blog">
+<meta property="og:description" content="1. Setup EC2 Instance">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="centered">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Link Post">
-<meta name="twitter:description" content="This is a link post. Clicking on the link should open Google in a new tab or window.">
+<meta name="twitter:title" content="AWS EC2 Python Environment Setup">
+<meta name="twitter:description" content="1. Setup EC2 Instance">
+<meta name="twitter:image" content="centered">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -154,7 +154,7 @@
 
 
 
-  <title>Link Post | NexT</title>
+  <title>AWS EC2 Python Environment Setup | Seuphor Blog</title>
   
 
 
@@ -190,7 +190,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">NexT</span>
+        <span class="site-title">Seuphor Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -304,7 +304,7 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/foo/2013/12/24/link-post/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/tutorials/2018/12/13/aws-ec2-setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Seuphor">
@@ -313,7 +313,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NexT">
+      <meta itemprop="name" content="Seuphor Blog">
     </span>
 
     
@@ -324,12 +324,8 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-              
-              <a class="post-title-link post-title-link-external" target="_blank" href="http://www.google.com/" itemprop="url">
-                Link Post
-                <i class="fa fa-external-link"></i>
-              </a>
-            
+            AWS EC2 Python Environment Setup
+          
         </h1>
         
 
@@ -342,8 +338,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-12-24T18:30:04-05:00">
-                2013-12-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-13T11:57:00-05:00">
+                2018-12-13
               </time>
             
 
@@ -366,8 +362,8 @@
               
                 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/category/#/Foo" itemprop="url" rel="index">
-                    <span itemprop="name">Foo</span>
+                  <a href="/category/#/tutorials" itemprop="url" rel="index">
+                    <span itemprop="name">tutorials</span>
                   </a>
                 </span>
 
@@ -421,7 +417,84 @@
 
 
 
-  <p>This is a link post. Clicking on the link should open <a href="http://www.google.com/">Google</a> in a new tab or window.</p>
+  <h2 id="1-setup-ec2-instance">1. Setup EC2 Instance</h2>
+
+<p>Go to AWS EC2 select Ubuntu Environment. When you are in the Configure Security Group Step, please setup SSH and Custom TCP as following:</p>
+
+<p><img class="centered" src="https://i.imgur.com/2tGCM5s.png" /></p>
+
+<p>Once the instance is setup, start the instance and enter into the environment with keys:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="c"># set the key.pem to read-only by root user</span>
+chmod 400 /path/my-key-pair.pem 
+
+ssh <span class="nt">-i</span> /path/my-key-pair.pem ubuntu@ec2-198-51-100-1.compute-1.amazonaws.com 
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="2-install-dependencies">2. Install Dependencies</h2>
+
+<p>Here we will go through the steps to install <a href="https://repo.continuum.io/archive/">python-anaconda</a> environment:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code><span class="c"># install anaconda package</span>
+wget http://repo.continuum.io/archive/Anaconda3-4.1.1-Linux-x86_64.sh
+bash Anaconda3–4.1.1-Linux-x86_64.sh
+
+<span class="c"># use the updated .bashrc file</span>
+<span class="nb">source</span> .bashrc
+
+<span class="c"># check which python you are using</span>
+which python
+</code></pre></td></tr></tbody></table></div></div>
+
+<h2 id="3-configure-jupyter-notebook">3. Configure Jupyter Notebook</h2>
+
+<p>To setup password for jupyter notebook. Type <strong>ipython</strong> in the terminal. Please save the ‘sha’ password somewhere for future usage</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">IPython.lib</span> <span class="kn">import</span> <span class="n">passwd</span>
+
+<span class="c"># set up the password following the instruction</span>
+<span class="n">passwd</span><span class="p">()</span>
+
+<span class="c"># exit out</span>
+<span class="nb">exit</span><span class="p">()</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>Generate a configuration file for Jupyter using (which locates at /.jupyter folder):</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>jupyter notebook <span class="nt">--generate-config</span>
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>Create certification folder for our connections in the form of .pem files</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code>mkdir certs
+<span class="nb">cd </span>certs
+<span class="nb">sudo </span>openssl req <span class="nt">-x509</span> <span class="nt">-nodes</span> <span class="nt">-days</span> 365 <span class="nt">-newkey</span> rsa:1024 <span class="nt">-keyout</span> mycert.pem <span class="nt">-out</span> mycert.pem
+
+<span class="nb">cd</span> ~/.jupyter/
+vi jupyter_notebook_config.py
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>Copy and paste following code</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code>c <span class="o">=</span> get_config<span class="o">()</span>
+c.IPKernelApp.pylab <span class="o">=</span> <span class="s1">'inline'</span>
+c.NotebookApp.certfile <span class="o">=</span> u<span class="s1">'/home/ubuntu/certs/mycert.pem'</span>
+c.NotebookApp.ip <span class="o">=</span> <span class="s1">'*'</span>
+c.NotebookApp.open_browser <span class="o">=</span> False
+
+<span class="c"># Your password below will be whatever you copied earlier</span>
+c.NotebookApp.password <span class="o">=</span> u<span class="s1">'sha1:941c93244463:0a28b4a9a472da0dc28e79351660964ab81605ae'</span>
+c.NotebookApp.port <span class="o">=</span> 8888
+</code></pre></td></tr></tbody></table></div></div>
+
+<p>There is also a easy way to setup, check <a href="https://medium.com/@margaretmz/setting-up-aws-ec2-for-running-jupyter-notebook-on-gpu-c281231fad3f">here</a> to see the instruction.</p>
+
+<h3 id="up-and-run">Up and Run</h3>
+
+<p>After setting up the notebook configuration file, you can run the notebook by typing:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="c"># You should probably change the permission to /anaconda3 folder to actually run the notebook without permission error</span>
+<span class="nb">sudo </span>chmod <span class="nt">-R</span> 777 /anaconda3
+
+nohup jupyter notebook
+
+<span class="c"># https://127.0.0.1:8888</span>
+https://IPv4 Public IP:PORT
+</code></pre></td></tr></tbody></table></div></div>
 
 
       
@@ -450,34 +523,21 @@
 
     <footer class="post-footer">
       
-
-      
-      
-      
-      
-      
-
-      
-      
-        <div class="post-nav" id="post-nav-id">
-          <div class="post-nav-next post-nav-item">
+        <div class="post-tags">
+          
             
-              <a href="/foo/bar/baz/2013/12/24/categories/" rel="next" title="Categories">
-                <i class="fa fa-chevron-left"></i> Categories
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/foo/2013/12/24/tags/" rel="prev" title="Tags">
-                Tags <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
+            <a href="/tag/#/aws" rel="tag"># aws</a>
+          
         </div>
+      
+
+      
+      
+      
+      
+      
+
+      
       
       
 
@@ -530,15 +590,24 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpeg"
                alt="Seuphor" />
           <p class="site-author-name" itemprop="name">Seuphor</p>
            
-              <p class="site-description motion-element" itemprop="description">Elegant theme for Jekyll.</p>
+              <p class="site-description motion-element" itemprop="description">data science related inspirations.</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -546,7 +615,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -557,7 +626,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -568,7 +637,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -579,15 +648,21 @@
         
         
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
 
         <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/seuphor" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
           
         </div>
 
@@ -602,6 +677,34 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#1-setup-ec2-instance"> <span class="nav-number">1</span> <span class="nav-text">1. Setup EC2 Instance</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2-install-dependencies"> <span class="nav-number">2</span> <span class="nav-text">2. Install Dependencies</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3-configure-jupyter-notebook"> <span class="nav-number">3</span> <span class="nav-text">3. Configure Jupyter Notebook</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#up-and-run"> <span class="nav-number">3.1</span> <span class="nav-text">Up and Run</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
