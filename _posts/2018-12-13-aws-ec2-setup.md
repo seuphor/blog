@@ -7,6 +7,8 @@ tags:
 - aws
 ---
 
+Here is a setup guide for aws ec2 in python anaconda environment.
+
 ## 1. Setup EC2 Instance
 
 Go to AWS EC2 select Ubuntu Environment. When you are in the Configure Security Group Step, please setup SSH and Custom TCP as following:
