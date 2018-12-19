@@ -5,9 +5,10 @@ categories:
 - tutorials
 tags:
 - aws
+- setup
 ---
 
-Here is a setup guide for aws ec2 in python anaconda environment.
+This is a setup guide for aws ec2 in python anaconda environment.
 
 ## 1. Setup EC2 Instance
 
@@ -82,7 +83,7 @@ c.NotebookApp.port = 8888
 
 There is also a easy way to setup, check [here](https://medium.com/@margaretmz/setting-up-aws-ec2-for-running-jupyter-notebook-on-gpu-c281231fad3f) to see the instruction.
 
-### Up and Run
+## 4. Up and Run
 
 After setting up the notebook configuration file, you can run the notebook by typing:
 ```sh
